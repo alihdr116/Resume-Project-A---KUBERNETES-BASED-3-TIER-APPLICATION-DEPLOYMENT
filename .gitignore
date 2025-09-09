@@ -1,4 +1,5 @@
 # Node / React
+.env   
 node_modules/                      # [dependencies cached locally; don't commit]
 frontend/node_modules/             # [frontend-specific node_modules]
 backend/node_modules/              # [backend-specific node_modules]
