@@ -1,6 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
+
+
 
 const app = express();
 app.use(cors());
@@ -8,10 +11,10 @@ app.use(express.json()); // so we can read JSON body requests
 
 // 🔹 Create MySQL connection
 const db = mysql.createConnection({
-  host: "mysql",        // service name from docker-compose
-  user: "root",
-  password: "rootpassword",
-  database: "resume_project",
+  host: process.env.DB_HOST,     
+  user: process.env.DB_USER,     
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 // 🔹 Connect to DB
@@ -98,7 +101,8 @@ app.delete("/api/users/:id", (req, res) => {
 // ------------------------------------------------
 // 🔹 Start Server
 // ------------------------------------------------
-const PORT = 5000;
+const PORT = process.env.BACKEND_PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`🚀 Backend running on port ${PORT}`);
 });
